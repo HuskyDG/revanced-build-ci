@@ -1,6 +1,6 @@
 {
   "versionCode": ${VERSIONCODE},
   "version": "${VERSION}",
-  "zipUrl": "https://github.com/HuskyDG/revanced-build-ci/releases/download/latest/revanced-magisk-installer.zip",
+  "zipUrl": "https://github.com/HuskyDG/revanced-build-ci/releases/download/latest/revanced-magisk.zip",
   "changelog": "https://github.com/HuskyDG/revanced-build-ci/releases/download/latest/revanced-magisk.md"
  }
