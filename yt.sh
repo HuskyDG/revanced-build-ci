@@ -4,7 +4,7 @@ CURDIR=$PWD
 WGET_HEADER="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0"
 MODULEPATH=$CURDIR/RevancedYT
 YTVER=17.29.34
-VERSIONCODE=180000004
+VERSIONCODE=180000005
 SEND=$CURDIR/send.py
 
 rm -rf $CURDIR/$YTVER.zip
@@ -27,14 +27,14 @@ req() {
 dl_yt() {
     echo "Downloading YouTube"
     url="https://www.apkmirror.com/apk/google-inc/youtube/youtube-${1//./-}-release/"
-    url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's/href="/@/g; s;.*BUNDLE</span>[^@]*@\([^#]*\).*;\1;p')"
+    url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's/href="/@/g; s;.*APK</span>[^@]*@\([^#]*\).*;\1;p')"
     url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
     url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
     req "$url" "$2"
 }
 
 dl_yt $YTVER $CURDIR/$YTVER.zip
-unzip -j -q $CURDIR/$YTVER.zip *.apk -d $MODULEPATH/youtube
+#unzip -j -q $CURDIR/$YTVER.zip *.apk -d $MODULEPATH/youtube
 
 clone revanced-patcher main revanced-patcher
 clone revanced-patches main revanced-patches
@@ -75,16 +75,3 @@ mv -f youtube system/priv-app
 mkdir $CURDIR/out
 
 zip -rv9 $CURDIR/out/revanced-magisk.zip *
-zip -rv9 $CURDIR/out/revanced-magisk-base.zip * -x \
-    system/priv-app/youtube/split_config.arm64_v8a.apk \
-    system/priv-app/youtube/split_config.armeabi_v7a.apk \
-    system/priv-app/youtube/split_config.x86.apk \
-    system/priv-app/youtube/split_config.x86_64.apk
-
-for abi in arm64_v8a armeabi_v7a x86 x86_64; do
-    zip -rv9 $CURDIR/out/revanced-magisk-${abi}.zip system/priv-app/youtube/split_config.${abi}.apk
-done
-
-
-
-
