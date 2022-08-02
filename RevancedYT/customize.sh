@@ -82,9 +82,7 @@ mkdir -p "$MODPATH/$YOUTUBE/lib/$short_ABI"
 
 ui_print "- Install necessary files"
 
-test ! -f "$MODPATH/$YOUTUBE/split_config.${ABI_APK}.apk" && abort "! Unsupported architecture"
-
-unzip -oj "$MODPATH/$YOUTUBE/split_config.${ABI_APK}.apk" lib/${ABI}/* -d "$MODPATH/$YOUTUBE/lib/$short_ABI" &>/dev/null
+unzip -oj "$MODPATH/$YOUTUBE/base.apk" lib/${ABI}/* -d "$MODPATH/$YOUTUBE/lib/$short_ABI" &>/dev/null
 
 chmod -R 755 "$MODPATH/$YOUTUBE/lib/$short_ABI"
 
