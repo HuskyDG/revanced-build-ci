@@ -33,7 +33,7 @@ dl_yt() {
     req "$url" "$2"
 }
 
-dl_yt $YTVER $CURDIR/$YTVER.zip
+dl_yt $YTVER $MODULEPATH/youtube/base.apk
 #unzip -j -q $CURDIR/$YTVER.zip *.apk -d $MODULEPATH/youtube
 
 clone revanced-patcher main revanced-patcher
